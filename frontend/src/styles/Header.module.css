@@ -5,11 +5,13 @@
   height: 5em;
   background-color: #D72638;
   margin-bottom: 5em;
+  box-shadow: -0.5em -0.5em 1.7em 0.5em #bd0f20 inset;
 }
 
 #websiteLogo {
+  font-family: "Jacquarda Bastarda 9", serif;
   color: #FFA63F;
-  font-size: 2em;
+  font-size: 2.4em;
   margin-right: 5em;
   text-decoration: none;
 }

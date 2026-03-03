@@ -10,7 +10,7 @@ function App() {
   return (
     <div id={styles.pageContainer}>
       <nav id={styles.header}>
-        <Link id={styles.websiteLogo} to='/'> Study Heights </Link>
+        <Link id={styles.websiteLogo} to='/'> study heights </Link>
         <nav id={styles.pageLinks}>
           <Link className={styles.navButton} to='/timers'> Timers </Link>
           <Link className={styles.navButton} to="/login">Login</Link>
