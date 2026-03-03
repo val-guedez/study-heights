@@ -12,10 +12,10 @@ function App() {
       <nav id={styles.header}>
         <Link id={styles.websiteLogo} to='/'> study heights </Link>
         <nav id={styles.pageLinks}>
-          <Link className={styles.navButton} to='/timers'> Timers </Link>
-          <Link className={styles.navButton} to="/login">Login</Link>
-          <Link className={styles.navButton} to='/create'> Create Account </Link>
-          <Link className={styles.navButton} to="/tips"> Study Tips </Link>
+          <Link className={styles.navButton} to='/timers'> timers </Link>
+          <Link className={styles.navButton} to="/login">login</Link>
+          <Link className={styles.navButton} to='/create'> create account </Link>
+          <Link className={styles.navButton} to="/tips"> study tips </Link>
         </nav>
       </nav>
       <Routes>

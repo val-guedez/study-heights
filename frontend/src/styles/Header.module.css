@@ -2,21 +2,23 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 5em;
+  height: 5rem;
   background-color: #D72638;
-  margin-bottom: 5em;
-  box-shadow: -0.5em -0.5em 1.7em 0.5em #bd0f20 inset;
+  margin-bottom: 5rem;
+  box-shadow: -0.5rem -0.5rem 1.7rem 0.5rem #bd0f20 inset;
+  padding-bottom: 0.4rem;
 }
 
 #websiteLogo {
   font-family: "Jacquarda Bastarda 9", serif;
   color: #FFA63F;
-  font-size: 2.4em;
-  margin-right: 5em;
+  font-size: 2.4rem;
+  margin-right: 5rem;
   text-decoration: none;
 }
 
 #pageLinks {
+  font-family: "Bitcount Prop Double", system-ui;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -28,7 +30,7 @@
   border: none;
   background-color: #D72638;
   color: white;
-  font-size: 1.3em;
+  font-size: 1.7rem;
   text-decoration: none;
 }
 
