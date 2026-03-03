@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+}
+
+#pageContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#titleText {
+  color: #3F88C5;
+}
+
+#introText {
+  color: #140F2D;
+  font-size: 1.5em;
+  width: 30em;
+}
+
+.sectionRowContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+#pixelArt {
+  background-color: grey;
+}

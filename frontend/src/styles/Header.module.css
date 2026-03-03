@@ -1,0 +1,36 @@
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 5em;
+  background-color: #D72638;
+  margin-bottom: 5em;
+}
+
+#websiteLogo {
+  color: #FFA63F;
+  font-size: 2em;
+  margin-right: 5em;
+  text-decoration: none;
+}
+
+#pageLinks {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  color: white;
+}
+
+.navButton {
+  border: none;
+  background-color: #D72638;
+  color: white;
+  font-size: 1.3em;
+  text-decoration: none;
+}
+
+.navButton:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}

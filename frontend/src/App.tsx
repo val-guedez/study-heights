@@ -1,17 +1,32 @@
-import styles from './Button.module.css';
+import { Link, Route, Routes } from 'react-router-dom';
+import styles from './styles/Header.module.css';
+import Login from './Login.tsx';
+import Home from './Home.tsx';
+import Timers from './Timers.tsx';
+import CreateAccount from './CreateAcount.tsx';
+import StudyTips from './StudyTips.tsx';
 
 function App() {
   return (
-    <div>
-      <nav>
-        <div id={styles.websiteLogo}> Study Heights </div>
-        <div> timers </div>
-        <div> login </div>
-        <div> create account </div>
-        <div> study tips </div>
+    <div id={styles.pageContainer}>
+      <nav id={styles.header}>
+        <Link id={styles.websiteLogo} to='/'> Study Heights </Link>
+        <nav id={styles.pageLinks}>
+          <Link className={styles.navButton} to='/timers'> Timers </Link>
+          <Link className={styles.navButton} to="/login">Login</Link>
+          <Link className={styles.navButton} to='/create'> Create Account </Link>
+          <Link className={styles.navButton} to="/tips"> Study Tips </Link>
+        </nav>
       </nav>
-      <hr/>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/create" element={<CreateAccount/>}/>
+        <Route path="/timers" element={<Timers/>}/>
+        <Route path="/tips" element={<StudyTips/>}/>
+      </Routes>
     </div>
+    
   )
 }
 
