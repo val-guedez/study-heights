@@ -17,6 +17,11 @@
   text-decoration: none;
 }
 
+#websiteLogo:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
 #pageLinks {
   font-family: "Bitcount Prop Double", system-ui;
   display: flex;
@@ -35,7 +40,8 @@
 }
 
 .navButton:hover {
-  opacity: 0.7;
+  /* opacity: 0.7; */
+  font-weight: bold;
   cursor: pointer;
 }
 

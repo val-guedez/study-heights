@@ -20,7 +20,10 @@ export default function CreateAccount() {
           <TextField className={styles.inputField} id="username" label="Username" variant="outlined" />
           <TextField className={styles.inputField} id="password" label="Password" variant="outlined" type="password" />
           <TextField className={styles.inputField} id="confirmPassword" label="Confirm Password" variant="outlined" type="password" />
-          <Button variant="contained" id={styles.submitButton}>Submit</Button>
+          <Button
+          variant="contained"
+          id={styles.submitButton}
+          >Submit</Button>
         </Box>
       </div>
     </div>
