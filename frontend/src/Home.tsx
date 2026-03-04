@@ -5,7 +5,7 @@ export default function Home() {
     <>
     <div className={styles.sectionRowContainer}>
       <div className={styles.textContainer}>
-        <h1 id={styles.titleText}> Reach New Heights </h1>
+        <h1 id={styles.titleText}> Reach New Heights. </h1>
         <p id={styles.introText}> every common study timer technique plus more at your finger tips! 
           create an account to make a study timetable and be rewarded with adorable 
           virtual pets when you keep studying! create a vision board with your goals 
