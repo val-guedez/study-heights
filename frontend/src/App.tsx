@@ -5,6 +5,7 @@ import Home from './Home.tsx';
 import Timers from './Timers.tsx';
 import CreateAccount from './CreateAcount.tsx';
 import StudyTips from './StudyTips.tsx';
+import ForgotPassword from './ForgotPassword.tsx';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/create" element={<CreateAccount/>}/>
         <Route path="/timers" element={<Timers/>}/>
         <Route path="/tips" element={<StudyTips/>}/>
+        <Route path="login/forgot" element={<ForgotPassword/>}/>
       </Routes>
     </div>
     
