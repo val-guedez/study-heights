@@ -1,8 +1,28 @@
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import styles from './styles/Login.module.css';
 
 export default function Login() {
   return (
     <>
-    <h1> THIS IS THE LOGIN PAGE</h1>
+    <div id={styles.pageContainer}>
+      <div id={styles.loginContainer}>
+        <h1 className={styles.title}> Login </h1>
+        <Box
+          component="form"
+          sx={{ '& > :not(style)': { m: 2, width: '25rem' } }}
+          noValidate
+          autoComplete="off"
+          id={styles.loginForm}
+        >
+          <TextField className={styles.inputField} id="username" label="Username" variant="outlined" />
+          <TextField className={styles.inputField} id="password" label="Password" variant="outlined" />
+          <p> Forgot password? </p>
+          <Button variant="contained" id={styles.submitButton}>Submit</Button>
+        </Box>
+      </div>
+    </div>
     </>
   );
 }

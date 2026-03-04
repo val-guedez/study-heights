@@ -1,0 +1,36 @@
+#pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#loginContainer, #loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#loginContainer {
+  border-color: rgb(235, 235, 235);
+  border-style: solid;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+#submitButton {
+  background-color: #3F88C5;
+}
+
+.title {
+  font-family: "Bitcount Prop Double", system-ui;
+  color: #FFA63F;
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.inputField {
+  background-color: white;
+  width: 10rem;
+}
