@@ -18,7 +18,7 @@ export default function Login() {
           id={styles.loginForm}
         >
           <TextField className={styles.inputField} id="username" label="Username" variant="outlined" />
-          <TextField className={styles.inputField} id="password" label="Password" variant="outlined" />
+          <TextField className={styles.inputField} type="password"  id="password" label="Password" variant="outlined" />
           <Link className={styles.navButton} to='/login/forgot'> Forgot password? </Link>
           <Button variant="contained" id={styles.submitButton}>Submit</Button>
         </Box>
