@@ -1,3 +1,4 @@
+import { Box, Button, TextField } from '@mui/material';
 import styles from './styles/Timers.module.css';
 import { useEffect, useRef, useState } from 'react';
 
@@ -11,6 +12,8 @@ const INTERVAL_IN_MILISECONDS = 1000;
 
 export default function Timers() {
   const [showTimer, setShowTimer] = useState(false);
+  const [showPomodoroForm, setShowPomodoroForm] = useState(false);
+  const [showTimerForm, setShowTimerForm] = useState(false);
   const [time, setTime] = useState(MILISECONDS_WORK);
   const referenceTime = useRef(Date.now());
   const [isRunning, setIsRunning] = useState(false);
@@ -21,6 +24,14 @@ export default function Timers() {
     setShowTimer(true);
     setIsRunning(true);
     referenceTime.current = Date.now();
+  }
+
+  const handleCustomPomodoro = () => {
+    setShowPomodoroForm(true);
+  }
+
+  const handleCustomTimer = () => {
+    setShowTimerForm(true);
   }
 
   const handlePause = () => {
@@ -62,24 +73,56 @@ export default function Timers() {
   }, [time, showTimer, isRunning]);
   
   return (
-    showTimer ? (
-      <>
-      <div id={styles.pageContainer}>
-        <div id={styles.timerDisplayContainer}>
-          <h1> {isBreak ? "On break!" : "Work! Work! Work!"} </h1>
-          <div id={styles.timerDisplay}> {(time/60000).toFixed(2)}min </div>
-          <button className={styles.timerControlButton} onClick={handlePause}> {isRunning ? "Pause" : "Continue"} </button>
+    <div id={styles.pageContainer}>
+      {
+        showTimer ? (
+        <>
+        <div id={styles.pageContainer}>
+          <div id={styles.timerDisplayContainer}>
+            <h1> {isBreak ? "On break!" : "Work! Work! Work!"} </h1>
+            <div id={styles.timerDisplay}> {(time/60000).toFixed(2)}min </div>
+            <button className={styles.timerControlButton} onClick={handlePause}> {isRunning ? "Pause" : "Continue"} </button>
+          </div>
         </div>
-      </div>
-      </>
-    ) : (
+        </>
+      ) : (showPomodoroForm ? (
+        <div id={styles.formContainer}>
+          <h1 className={styles.title}> Create Custom Pomodoro Timer </h1>
+          <Box
+            component="form"
+            sx={{ '& > :not(style)': { m: 2, width: '25rem' } }}
+            noValidate
+            autoComplete="off"
+            id={styles.timerForm}
+          >
+            <TextField className={styles.inputField} type="number" id="work" label="Work" variant="outlined" />
+            <TextField className={styles.inputField} type="number" id="shortBreak" label="Short Break" variant="outlined" />
+            <TextField className={styles.inputField} type="number" id="longBreak" label="Long Break" variant="outlined" />
+            <Button variant="contained" id={styles.submitButton}>Start</Button>
+          </Box>
+        </div>
+      ) : showTimerForm ? (
+        <div id={styles.formContainer}>
+          <h1 className={styles.title}> Create Custom Timer </h1>
+          <Box
+            component="form"
+            sx={{ '& > :not(style)': { m: 2, width: '25rem' } }}
+            noValidate
+            autoComplete="off"
+            id={styles.timerForm}
+          >
+            <TextField className={styles.inputField} type="number" id="time" label="Time" variant="outlined" />
+            <Button variant="contained" id={styles.submitButton}>Start</Button>
+          </Box>
+        </div>
+      ) : (
       <>
-      <div id={styles.pageContainer}>
         <button className={styles.timerButton} onClick={handlePomodoro}> Pomodoro </button>
-        <button className={styles.timerButton}> Custom Pomodoro </button>
-        <button className={styles.timerButton}> Custom Timer </button>
-      </div>
-      </>
-    )
+        <button className={styles.timerButton} onClick={handleCustomPomodoro}> Custom Pomodoro </button>
+        <button className={styles.timerButton} onClick={handleCustomTimer}> Custom Timer </button>
+      </>)
+      )
+    }
+    </div>
   );
 }

@@ -16,7 +16,7 @@
   border-color: rgb(235, 235, 235);
   border-style: solid;
   background-color: white;
-  border-radius: rem;
+  border-radius: 0.5rem;
 }
 
 #submitButton {
