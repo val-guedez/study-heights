@@ -38,12 +38,15 @@ export default function Timers() {
   }
 
   const startTimer = () => {
-    if (showPomodoroForm) setShowPomodoroForm(false);
-    else if (showTimerForm) setShowTimerForm(false);
-    setTime(workTimer.current);
-    setShowTimer(true);
-    setIsRunning(true);
-    referenceTime.current = Date.now();
+    // console.log(`Invalid: Work -> ${invalidWorkTime} Short -> ${invalidShortBreakTime} Long -> ${invalidLongBreakTime}`);
+    if (!invalidWorkTime && !invalidShortBreakTime && !invalidLongBreakTime) {
+      if (showPomodoroForm) setShowPomodoroForm(false);
+      else if (showTimerForm) setShowTimerForm(false);
+      setTime(workTimer.current);
+      setShowTimer(true);
+      setIsRunning(true);
+      referenceTime.current = Date.now();
+    }
   }
 
   const handlePause = () => {
@@ -64,6 +67,7 @@ export default function Timers() {
   }
 
   const checkFormInput = (input: string) => {
+    if (input.length === 0) return true;
     const notNum = /[^0-9]+/;
     return notNum.test(input);
   }
@@ -127,17 +131,17 @@ export default function Timers() {
             id={styles.timerForm}
           >
             {invalidWorkTime ? (
-              <TextField error helperText="Only whole numbers" className={styles.inputField} id="work" label="Work (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidWorkTime)}/>
+              <TextField error helperText="Only enter a whole number" className={styles.inputField} id="work" label="Work (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidWorkTime)}/>
             ) : (
               <TextField className={styles.inputField} id="work" label="Work (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidWorkTime)}/>
             )}
             {invalidShortBreakTime ? (
-              <TextField error helperText="Only whole numbers" className={styles.inputField} id="shortBreak" label="Short Break (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidShortBreakTime)}/>
+              <TextField error helperText="Only enter a whole number" className={styles.inputField} id="shortBreak" label="Short Break (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidShortBreakTime)}/>
             ) : (
               <TextField className={styles.inputField} id="shortBreak" label="Short Break (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidShortBreakTime)}/>
             )}
             {invalidLongBreakTime ? (
-              <TextField error helperText="Only whole numbers" className={styles.inputField} id="longBreak" label="Long Break (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidLongBreakTime)}/>
+              <TextField error helperText="Only enter a whole number" className={styles.inputField} id="longBreak" label="Long Break (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidLongBreakTime)}/>
             ) : (
               <TextField className={styles.inputField} id="longBreak" label="Long Break (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidLongBreakTime)}/>
             )}
@@ -155,7 +159,7 @@ export default function Timers() {
             id={styles.timerForm}
           >
             {invalidWorkTime ? (
-              <TextField error helperText="Only whole numbers" className={styles.inputField} id="work" label="Work (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidWorkTime)}/>
+              <TextField error helperText="Only enter a whole number" className={styles.inputField} id="work" label="Work (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidWorkTime)}/>
             ) : (
               <TextField className={styles.inputField} id="work" label="Work (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidWorkTime)}/>
             )}
