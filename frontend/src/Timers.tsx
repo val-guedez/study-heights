@@ -19,19 +19,28 @@ export default function Timers() {
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const workSessionCount = useRef(0);
-
-  const handlePomodoro = () => {
-    setShowTimer(true);
-    setIsRunning(true);
-    referenceTime.current = Date.now();
-  }
+  const workTimer = useRef(MILISECONDS_WORK);
+  const shortBreakTimer = useRef(MILISECONDS_BREAK);
+  const longBreakTimer = useRef(MILISECONDS_LONG_BREAK);
+  const isCustomTimer = useRef(false);
 
   const handleCustomPomodoro = () => {
+    setTime(workTimer.current);
     setShowPomodoroForm(true);
   }
 
   const handleCustomTimer = () => {
+    isCustomTimer.current = true;
     setShowTimerForm(true);
+  }
+
+  const startTimer = () => {
+    if (showPomodoroForm) setShowPomodoroForm(false);
+    else if (showTimerForm) setShowTimerForm(false);
+    setTime(workTimer.current);
+    setShowTimer(true);
+    setIsRunning(true);
+    referenceTime.current = Date.now();
   }
 
   const handlePause = () => {
@@ -52,14 +61,18 @@ export default function Timers() {
       setTime(prevTime => {
         console.log("interval:", interval, "prevTime:", prevTime);
         if (prevTime <= 0) {
-          const onBreak = !isBreak;
-          setIsBreak(onBreak);
-          if (onBreak) {
-            workSessionCount.current++;
-            return (workSessionCount.current % 4 === 0 ? MILISECONDS_LONG_BREAK : MILISECONDS_BREAK);
+          console.log(`isCustomTimer is ${isCustomTimer.current}`);
+          if (!isCustomTimer.current) {
+            const onBreak = !isBreak;
+            setIsBreak(onBreak);
+            if (onBreak) {
+              console.log("on break!");
+              workSessionCount.current++;
+              return (workSessionCount.current % 4 === 0 ? longBreakTimer.current : shortBreakTimer.current);
+            }
+            console.log("Reset timer");
+            return workTimer.current;
           }
-          console.log("Reset timer");
-          return MILISECONDS_WORK;
         }
 
         const newTime = prevTime - interval;
@@ -80,7 +93,7 @@ export default function Timers() {
         <div id={styles.pageContainer}>
           <div id={styles.timerDisplayContainer}>
             <h1> {isBreak ? "On break!" : "Work! Work! Work!"} </h1>
-            <div id={styles.timerDisplay}> {(time/60000).toFixed(2)}min </div>
+            <div id={styles.timerDisplay}> {(time / 60000).toFixed(2)}min </div>
             <button className={styles.timerControlButton} onClick={handlePause}> {isRunning ? "Pause" : "Continue"} </button>
           </div>
         </div>
@@ -95,10 +108,10 @@ export default function Timers() {
             autoComplete="off"
             id={styles.timerForm}
           >
-            <TextField className={styles.inputField} type="number" id="work" label="Work" variant="outlined" />
-            <TextField className={styles.inputField} type="number" id="shortBreak" label="Short Break" variant="outlined" />
-            <TextField className={styles.inputField} type="number" id="longBreak" label="Long Break" variant="outlined" />
-            <Button variant="contained" id={styles.submitButton}>Start</Button>
+            <TextField className={styles.inputField} type="number" id="work" label="Work" variant="outlined" onChange={(event) => workTimer.current = 60 * parseInt(event.target.value) * 1000}/>
+            <TextField className={styles.inputField} type="number" id="shortBreak" label="Short Break" variant="outlined" onChange={(event) => shortBreakTimer.current = 60 * parseInt(event.target.value) * 1000} />
+            <TextField className={styles.inputField} type="number" id="longBreak" label="Long Break" variant="outlined" onChange={(event) => longBreakTimer.current = 60 * parseInt(event.target.value) * 1000} />
+            <Button variant="contained" id={styles.submitButton} onClick={startTimer}>Start</Button>
           </Box>
         </div>
       ) : showTimerForm ? (
@@ -111,13 +124,13 @@ export default function Timers() {
             autoComplete="off"
             id={styles.timerForm}
           >
-            <TextField className={styles.inputField} type="number" id="time" label="Time" variant="outlined" />
-            <Button variant="contained" id={styles.submitButton}>Start</Button>
+            <TextField className={styles.inputField} type="number" id="time" label="Time" variant="outlined" onChange={(event) => workTimer.current = 60 * parseInt(event.target.value) * 1000}/>
+            <Button variant="contained" id={styles.submitButton} onClick={startTimer}>Start</Button>
           </Box>
         </div>
       ) : (
       <>
-        <button className={styles.timerButton} onClick={handlePomodoro}> Pomodoro </button>
+        <button className={styles.timerButton} onClick={startTimer}> Pomodoro </button>
         <button className={styles.timerButton} onClick={handleCustomPomodoro}> Custom Pomodoro </button>
         <button className={styles.timerButton} onClick={handleCustomTimer}> Custom Timer </button>
       </>)
