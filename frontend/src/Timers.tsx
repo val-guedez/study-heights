@@ -1,14 +1,17 @@
 import styles from './styles/Timers.module.css';
 import { useEffect, useRef, useState } from 'react';
 
-const TIME_IN_MILISECONDS_TO_COUNTDOWN = 60*20*1000;
+// const TIME_IN_MILISECONDS_TO_COUNTDOWN = 60 * 20 * 1000;
+const MILISECONDS_WORK = 10 * 1000;
+const MILISECONDS_BREAK = 60 * 5 * 1000;
 const INTERVAL_IN_MILISECONDS = 1000;
 
 export default function Timers() {
   const [showTimer, setShowTimer] = useState(false);
-  const [time, setTime] = useState(TIME_IN_MILISECONDS_TO_COUNTDOWN);
+  const [time, setTime] = useState(MILISECONDS_WORK);
   const referenceTime = useRef(Date.now());
   const [isRunning, setIsRunning] = useState(false);
+  const [isBreak, setIsBreak] = useState(false);
 
   const handlePomodoro = () => {
     setShowTimer(true);
@@ -33,9 +36,17 @@ export default function Timers() {
       referenceTime.current = now;
       setTime(prevTime => {
         console.log("interval:", interval, "prevTime:", prevTime);
-        if (prevTime <= 0) return 0;
+        if (prevTime <= 0) {
+          const onBreak = !isBreak;
+          setIsBreak(onBreak);
+          console.log("Reset timer");
+          return onBreak ? MILISECONDS_BREAK : MILISECONDS_WORK;
+        }
 
-        return prevTime - interval;
+        const newTime = prevTime - interval;
+        console.log("Timer now updated");
+        console.log(`newTime == ${prevTime} - ${interval}`);
+        return (newTime < 0 ? 0 : newTime);
       });
     }
 
@@ -47,10 +58,9 @@ export default function Timers() {
       <>
       <div id={styles.pageContainer}>
         <div id={styles.timerDisplayContainer}>
+          <h1> {isBreak ? "On break!" : "Work! Work! Work!"} </h1>
           <div id={styles.timerDisplay}> {(time/60000).toFixed(2)}min </div>
-          <div id={styles.timerControlButtonsContainer}>
-            <button className={styles.timerControlButton} onClick={handlePause}> {isRunning ? "Pause" : "Continue"} </button>
-          </div>
+          <button className={styles.timerControlButton} onClick={handlePause}> {isRunning ? "Pause" : "Continue"} </button>
         </div>
       </div>
       </>
