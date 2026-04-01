@@ -1,9 +1,12 @@
 import styles from './styles/Timers.module.css';
 import { useEffect, useRef, useState } from 'react';
 
-// const TIME_IN_MILISECONDS_TO_COUNTDOWN = 60 * 20 * 1000;
-const MILISECONDS_WORK = 10 * 1000;
-const MILISECONDS_BREAK = 60 * 5 * 1000;
+// const MILISECONDS_WORK = 60 * 20 * 1000;
+// const MILISECONDS_BREAK = 60 * 5 * 1000;
+// const MILISECONDS_LONG_BREAK = 60 * 15 * 1000;
+const MILISECONDS_WORK = 15 * 1000;
+const MILISECONDS_BREAK = 5 * 1000;
+const MILISECONDS_LONG_BREAK = 10 * 1000;
 const INTERVAL_IN_MILISECONDS = 1000;
 
 export default function Timers() {
@@ -12,6 +15,7 @@ export default function Timers() {
   const referenceTime = useRef(Date.now());
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
+  const workSessionCount = useRef(0);
 
   const handlePomodoro = () => {
     setShowTimer(true);
@@ -39,8 +43,12 @@ export default function Timers() {
         if (prevTime <= 0) {
           const onBreak = !isBreak;
           setIsBreak(onBreak);
+          if (onBreak) {
+            workSessionCount.current++;
+            return (workSessionCount.current % 4 === 0 ? MILISECONDS_LONG_BREAK : MILISECONDS_BREAK);
+          }
           console.log("Reset timer");
-          return onBreak ? MILISECONDS_BREAK : MILISECONDS_WORK;
+          return MILISECONDS_WORK;
         }
 
         const newTime = prevTime - interval;
