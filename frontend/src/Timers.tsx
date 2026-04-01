@@ -50,6 +50,19 @@ export default function Timers() {
     setIsRunning(prev => !prev);
   }
 
+  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement, Element>, timerRef:React.RefObject<number>) => {
+    if (checkFormInput(event.target.value)) {
+      // Throw error
+    } else {
+      timerRef.current = 60 * parseInt(event.target.value) * 1000;
+    }
+  }
+
+  const checkFormInput = (input: string) => {
+    const notNum = /^[0-9]+/;
+    return notNum.test(input);
+  }
+
   useEffect(() => {
     console.log("effect ran", { showTimer, time });
     if (!showTimer || !isRunning) return;  
@@ -108,9 +121,9 @@ export default function Timers() {
             autoComplete="off"
             id={styles.timerForm}
           >
-            <TextField className={styles.inputField} type="number" id="work" label="Work" variant="outlined" onChange={(event) => workTimer.current = 60 * parseInt(event.target.value) * 1000}/>
-            <TextField className={styles.inputField} type="number" id="shortBreak" label="Short Break" variant="outlined" onChange={(event) => shortBreakTimer.current = 60 * parseInt(event.target.value) * 1000} />
-            <TextField className={styles.inputField} type="number" id="longBreak" label="Long Break" variant="outlined" onChange={(event) => longBreakTimer.current = 60 * parseInt(event.target.value) * 1000} />
+            <TextField className={styles.inputField} type="number" id="work" label="Work (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer)}/>
+            <TextField className={styles.inputField} type="number" id="shortBreak" label="Short Break (min)" variant="outlined" onChange={(event) => handleFormChange(event, shortBreakTimer)} />
+            <TextField className={styles.inputField} type="number" id="longBreak" label="Long Break (min)" variant="outlined" onChange={(event) => handleFormChange(event, longBreakTimer)} />
             <Button variant="contained" id={styles.submitButton} onClick={startTimer}>Start</Button>
           </Box>
         </div>
@@ -124,7 +137,7 @@ export default function Timers() {
             autoComplete="off"
             id={styles.timerForm}
           >
-            <TextField className={styles.inputField} type="number" id="time" label="Time" variant="outlined" onChange={(event) => workTimer.current = 60 * parseInt(event.target.value) * 1000}/>
+            <TextField className={styles.inputField} type="number" id="time" label="Time (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer)}/>
             <Button variant="contained" id={styles.submitButton} onClick={startTimer}>Start</Button>
           </Box>
         </div>

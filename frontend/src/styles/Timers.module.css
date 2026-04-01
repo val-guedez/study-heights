@@ -76,6 +76,7 @@ body {
   background-color: white;
   border-radius: 0.5rem;
   width: 30%;
+  padding: 1.5rem 0rem;
 }
 
 #submitButton {
