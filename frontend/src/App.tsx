@@ -1,11 +1,13 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import styles from './styles/Header.module.css';
+import footerStyles from './styles/Footer.module.css';
 import Login from './Login.tsx';
 import Home from './Home.tsx';
 import Timers from './Timers.tsx';
 import CreateAccount from './CreateAcount.tsx';
 import StudyTips from './StudyTips.tsx';
 import ForgotPassword from './ForgotPassword.tsx';
+import { FooterText } from './FooterText.tsx';
 
 function App() {
   return (
@@ -27,8 +29,11 @@ function App() {
         <Route path="/tips" element={<StudyTips/>}/>
         <Route path="login/forgot" element={<ForgotPassword/>}/>
       </Routes>
+      <footer id={footerStyles.footerContainer}>
+        <FooterText heading={"Stay In The Loop"}
+        listElements={[{Github: "https://github.com/val-guedez/study-heights"}, {Instagram: "idk"}, {Discord: "im just ken"}]}/>
+      </footer>
     </div>
-    
   )
 }
 
