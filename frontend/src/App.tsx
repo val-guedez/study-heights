@@ -32,6 +32,12 @@ function App() {
       <footer id={footerStyles.footerContainer}>
         <FooterText heading={"Stay In The Loop"}
         listElements={[{Github: "https://github.com/val-guedez/study-heights"}, {Instagram: "idk"}, {Discord: "im just ken"}]}/>
+        <FooterText heading={"Help"}
+        listElements={[{Github: "https://github.com/val-guedez/study-heights"}, {Instagram: "idk"}, {Discord: "im just ken"}]}/>
+        <FooterText heading={"Keep going"}
+        listElements={[{Github: "https://github.com/val-guedez/study-heights"}, {Instagram: "idk"}, {Discord: "im just ken"}]}/>
+        <FooterText heading={"Idk more links ig"}
+        listElements={[{Github: "https://github.com/val-guedez/study-heights"}, {Instagram: "idk"}, {Discord: "im just ken"}]}/>
       </footer>
     </div>
   )
