@@ -145,7 +145,7 @@ export default function Timers() {
             ) : (
               <TextField className={styles.inputField} id="longBreak" label="Long Break (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidLongBreakTime)}/>
             )}
-            <Button variant="contained" id={styles.submitButton} onClick={startTimer}>Start</Button>
+            <Button variant="contained" id={styles.submitButton} onClick={startTimer}>Start!</Button>
           </Box>
         </div>
       ) : showTimerForm ? (
@@ -163,7 +163,7 @@ export default function Timers() {
             ) : (
               <TextField className={styles.inputField} id="work" label="Work (min)" variant="outlined" onChange={(event) => handleFormChange(event, workTimer, setInvalidWorkTime)}/>
             )}
-            <Button variant="contained" id={styles.submitButton} onClick={startTimer}>Start</Button>
+            <Button variant="contained" id={styles.submitButton} onClick={startTimer}>Start!</Button>
           </Box>
         </div>
       ) : (
