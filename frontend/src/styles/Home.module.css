@@ -32,6 +32,7 @@ body {
 .sectionRowContainer {
   display: flex;
   justify-content: space-around;
+  padding: 2rem 0;
 }
 
 #pixelArt {
@@ -40,4 +41,8 @@ body {
 
 .dotPoint {
   margin-bottom: 0.6rem;
+}
+
+#anotherContainer {
+  background-color: #d4d4d4;
 }
